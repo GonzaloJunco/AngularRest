@@ -24,6 +24,9 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "persona-rest"
+    }
+  },
+  "defaultProject": "persona-rest",
+  "cli": {
+    "analytics": "5ba4a09f-a6b1-469d-82d1-28bc6035710c"
+  }
 }

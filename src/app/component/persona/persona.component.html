@@ -1,0 +1,53 @@
+<div class="my-2">
+    <button pButton type="button" icon="pi pi-check" label=" Registrar" 
+    class="ui-button-raised ui-button-primary" (click)="dialogRegistrar()"></button>
+</div>
+<div>
+    <p-table [value]="persona">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Persona</th>
+                <th>Fecha</th>
+                <th>Accion</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-per>
+            <tr>
+                <td>{{per.id}}</td>
+                <td>{{per.nombres}} {{per.apellidos}}</td>
+                <td>{{per.fecha | date:'yyyy-MMMM-dd / HH:mm:ss'}}</td>
+                <td>
+                    <button pButton type="button" icon="pi pi-trash" (click)="deletePersona(per)" class="ui-button-raised ui-button-danger"  ></button>
+                    &nbsp;
+                    <button pButton type="button" icon="pi pi-heart" (click)="dialogActualizar(per)" class="ui-button-raised ui-button-success"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog header="Persona" [(visible)]="dialogo" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+        <div >
+            <label for="nombre">Nombres</label>&nbsp;
+            <input id="nombre" type="text" size="30" pInputText [(ngModel)]="personaBD.nombres">
+        </div>
+        <div>
+            <label for="apellido">Apellidos</label>&nbsp;
+            <input id="apellido" type="text" size="30" pInputText [(ngModel)]="personaBD.apellidos"> 
+        </div>
+        <div class="my-2">
+            <button *ngIf="estado" type="button" pButton icon="pi pi-check" 
+            (click)="putPersona(personaBD)" label="Actualizar"
+            class="ui-button-raised ui-button-success"></button>
+
+            <button *ngIf="!estado" type="button" pButton icon="pi pi-check" 
+            (click)="postPersona(personaBD)" label="Registrar"
+            class="ui-button-raised ui-button-primary"></button>
+        </div>
+        <p-footer>
+            
+            <button type="button" pButton icon="pi pi-times" (click)="dialogo=false" label="Cancelar" class="ui-button-secondary"></button>
+        </p-footer>
+</p-dialog>
