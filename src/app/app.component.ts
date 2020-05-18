@@ -17,13 +17,16 @@ export class AppComponent implements OnInit{
   }
 
   
-  getPersonaNombre(nombres: any) {
+  getPersonaNombre(nombres: string) {
+
+    if(nombres !==''){
+      this.service.getPersonaNombre(nombres).subscribe((per: any) => {
+        this.persona = per;
+        console.log(this.persona);
+      });
+    }
     
     
-    this.service.getPersonaNombre(nombres).subscribe((per: any) => {
-      this.persona = per;
-      console.log(this.persona);
-    });
   }
 
   items: MenuItem[];
